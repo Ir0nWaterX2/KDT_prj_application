@@ -71,13 +71,12 @@ public class UserController {
 
 
 
-    
-    @PostMapping("/signupupup")
+     @PostMapping("/signup")
     public String createUser(
         @Valid UserCreateForm userCreateForm,
         BindingResult bindingResult
     ) {
-    
+
         // 2. 백엔드 validation
         try {
             userService.create(
