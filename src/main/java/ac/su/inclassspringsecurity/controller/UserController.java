@@ -71,6 +71,24 @@ public class UserController {
 
 
 
+
+
+
+    
+   //-------------------------------------------------------------<<<<<<
+
+
+    
+    
+    @GetMapping("/signup")
+    public String signup(
+        UserCreateForm userCreateForm
+    ) {
+        return "signup_form";
+    }
+
+
+    
      @PostMapping("/signup")
     public String createUser(
         @Valid UserCreateForm userCreateForm,
@@ -101,22 +119,6 @@ public class UserController {
         // 3. 회원 가입 성공
         return "redirect:/";
     }
-
-
-
-    
-   //-------------------------------------------------------------<<<<<<
-
-
-    
-    
-    @GetMapping("/signup")
-    public String signup(
-        UserCreateForm userCreateForm
-    ) {
-        return "signup_form";
-    }
-
     
 
     // @PostMapping("/signup")
