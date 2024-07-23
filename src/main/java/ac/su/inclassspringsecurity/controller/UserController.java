@@ -44,6 +44,7 @@ import org.springframework.web.bind.annotation.PathVariable; // 추가된 import
 public class UserController {
     private final UserService userService;
 
+    //------------------------------작업공간 -------------------------->>>>
 
     @RequestMapping(value = "/cpubound/{input}", method = RequestMethod.GET)
     public String getDigest(@PathVariable("input") String input, Model model) throws NoSuchAlgorithmException {
@@ -54,6 +55,7 @@ public class UserController {
         return "cpubound_form";  
     }
 
+    
 
     private String getMD5Digest(String input) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("MD5");
@@ -70,12 +72,41 @@ public class UserController {
 
 
     
-    @RequestMapping("/hello")
-    public String hello() {
-        return "cpubound_form";
+    @PostMapping("/signupupup")
+    public String createUser(
+        @Valid UserCreateForm userCreateForm,
+        BindingResult bindingResult
+    ) {
+    
+        // 2. 백엔드 validation
+        try {
+            userService.create(
+                userCreateForm.getUsername(),
+                userCreateForm.getPassword1(),
+                userCreateForm.getEmail()
+            );
+        } catch (IllegalStateException e) {
+            bindingResult.reject(
+                "signupFailed",
+                "이미 등록된 사용자 입니다."
+            );
+            return "signup_form";
+        } catch (Exception e) {
+            bindingResult.reject(
+                "signupFailed",
+                e.getMessage()
+            );
+            return "signup_form";
+        }
+
+        // 3. 회원 가입 성공
+        return "redirect:/";
     }
 
+
+
     
+   //-------------------------------------------------------------<<<<<<
 
 
     
