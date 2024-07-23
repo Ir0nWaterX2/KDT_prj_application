@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.ui.Model; //추가된 import 문 
 import jakarta.xml.bind.DatatypeConverter;// 추가된 import 문
 import java.security.MessageDigest;// 추가된 import 문
