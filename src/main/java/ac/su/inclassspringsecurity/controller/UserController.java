@@ -30,16 +30,31 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
+
+    
 @RequestMapping("/users")
 public class UserController {
     private final UserService userService;
 
+    
+    @GetMapping("/cpubound")
+    public String signup(
+        UserCreateForm userCreateForm
+    ) {
+        return "signup_form";
+    }
+
+
+
+    
     @GetMapping("/signup")
     public String signup(
         UserCreateForm userCreateForm
     ) {
         return "signup_form";
     }
+
+    
 
     @PostMapping("/signup")
     public String createUser(
