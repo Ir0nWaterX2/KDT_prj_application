@@ -28,6 +28,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException; // 추가된 import 문
+import org.springframework.web.bind.annotation.PathVariable; // 추가된 import 문
+
 @Controller
 @RequiredArgsConstructor
 
@@ -39,7 +43,7 @@ public class UserController {
 
 
 
-    @RequestMapping("/hash/{input}")
+    @RequestMapping("/cpubound/{input}")
     public String getDigest(@PathVariable("input") String input) throws NoSuchAlgorithmException {
         for(int i = 0; i < 100_000; i++) {
             input = getMD5Digest(input);
@@ -47,10 +51,7 @@ public class UserController {
         return input; 
     }
 
-    @RequestMapping("/hello")
-    public String hello() {
-        return "webhook ...!!!! !";
-    }
+    
 
     private String getMD5Digest(String input) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("MD5");
@@ -62,16 +63,11 @@ public class UserController {
         return myHash;
     }
 
-
-
-    
-    
-    @GetMapping("/cpubound")
-    public String cpubound(
-        UserCreateForm userCreateForm
-    ) {
-        return "signup_form";
+    @RequestMapping("/hello")
+    public String hello() {
+        return "webhook ...!!!! !";
     }
+
 
 
     
