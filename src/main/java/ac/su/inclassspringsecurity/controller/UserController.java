@@ -38,7 +38,7 @@ public class UserController {
 
     
     @GetMapping("/cpubound")
-    public String signup(
+    public String cpubound(
         UserCreateForm userCreateForm
     ) {
         return "signup_form";
