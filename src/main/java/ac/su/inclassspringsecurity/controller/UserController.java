@@ -45,13 +45,7 @@ public class UserController {
     }
 
 
-    @RequestMapping("/hash/{input}")
-    public String getDigest(@PathVariable("input") String input) throws NoSuchAlgorithmException {
-        for(int i = 0; i < 100_000; i++) {
-            input = getMD5Digest(input);
-        }
-        return input; 
-    }
+    
     
     @GetMapping("/signup")
     public String signup(
