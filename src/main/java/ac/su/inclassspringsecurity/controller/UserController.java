@@ -28,8 +28,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.xml.bind.DatatypeConverter;
-import java.security.MessageDigest;
+import jakarta.xml.bind.DatatypeConverter;// 추가된 import 문
+import java.security.MessageDigest;// 추가된 import 문
 import java.security.NoSuchAlgorithmException; // 추가된 import 문
 import org.springframework.web.bind.annotation.PathVariable; // 추가된 import 문
 
