@@ -49,26 +49,30 @@ public class UserController {
         for(int i = 0; i < 100_000; i++) {
             input = getMD5Digest(input);
         }
+        model.addAttribute("result", input);
         return input; 
     }
-
-    
-
     private String getMD5Digest(String input) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("MD5");
         md.update(input.getBytes());
         byte[] digest = md.digest();
-        String myHash = DatatypeConverter
-                .printHexBinary(digest).toUpperCase();
+        return DatatypeConverter.printHexBinary(digest).toUpperCase();
 
-        return myHash;
+        // String myHash = DatatypeConverter
+        //         .printHexBinary(digest).toUpperCase();
+
+        // return myHash;
     }
 
+
+
+    
     @RequestMapping("/hello")
     public String hello() {
         return "cpubound_form";
     }
 
+    
 
 
     
