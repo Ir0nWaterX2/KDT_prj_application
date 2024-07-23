@@ -28,6 +28,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
+import org.springframework.ui.Model; //추가된 import 문 
 import jakarta.xml.bind.DatatypeConverter;// 추가된 import 문
 import java.security.MessageDigest;// 추가된 import 문
 import java.security.NoSuchAlgorithmException; // 추가된 import 문
@@ -42,16 +45,16 @@ public class UserController {
     private final UserService userService;
 
 
-
-
-    @RequestMapping("/cpubound/{input}")
-    public String getDigest(@PathVariable("input") String input) throws NoSuchAlgorithmException {
-        for(int i = 0; i < 100_000; i++) {
+    @RequestMapping(value = "/cpubound/{input}", method = RequestMethod.GET)
+    public String getDigest(@PathVariable("input") String input, Model model) throws NoSuchAlgorithmException {
+        for (int i = 0; i < 100_000; i++) {
             input = getMD5Digest(input);
         }
-        model.addAttribute("result", input);
-        return input; 
+        model.addAttribute("result", input); 
+        return "cpubound_form";  
     }
+
+
     private String getMD5Digest(String input) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("MD5");
         md.update(input.getBytes());
